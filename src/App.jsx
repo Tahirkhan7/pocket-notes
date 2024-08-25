@@ -26,7 +26,10 @@ function App() {
         <Sidebar setSelectedNoteGroup={setSelectedNoteGroup} />
       ) : null}
       {selectedNoteGroup ? (
-        <Notes noteGroup={selectedNoteGroup} setSelectedNoteGroup={setSelectedNoteGroup} />
+        <Notes
+          noteGroup={selectedNoteGroup}
+          setSelectedNoteGroup={setSelectedNoteGroup}
+        />
       ) : (
         <MainContent />
       )}

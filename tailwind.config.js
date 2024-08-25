@@ -6,6 +6,12 @@ export default {
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
       },
+      fontSize: {
+        'custom': '2.5rem',
+      },
+      lineHeight: {
+        'custom': '1.75rem',
+      },
     },
   },
   plugins: [],

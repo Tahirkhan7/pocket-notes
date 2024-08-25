@@ -34,11 +34,11 @@ export default function AddNoteGroupModal({ isOpen, onClose }) {
     let errors = { groupName: "", color: "" };
 
     if (!noteGroupName.trim()) {
-      errors.groupName = "Group name is required.";
+      errors.groupName = "Group name is required!";
     }
 
     if (!selectedColor) {
-      errors.color = "Color must be selected.";
+      errors.color = "Color must be selected!";
     }
 
     if (errors.groupName || errors.color) {
@@ -62,15 +62,14 @@ export default function AddNoteGroupModal({ isOpen, onClose }) {
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div
         ref={modalRef}
-        className="relative bg-white p-6 rounded-lg shadow-lg w-11/12 sm:w-3/4 md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto"
+        className="relative bg-white p-4 rounded-lg shadow-lg w-11/12 sm:w-3/4 md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto"
       >
-        <h2 className="text-xl font-bold mb-4">Create New Group</h2>
-        <form
-          className="flex flex-col p-4 sm:p-6 md:p-8"
-          onSubmit={handleSubmit}
-        >
+        <h2 className="text-xl font-bold">Create New Group</h2>
+        <form className="flex flex-col p-2 sm:p-6" onSubmit={handleSubmit}>
           <div className="mb-4 flex items-center">
-            <label className="block text-black font-roboto font-bold w-6/12">Group Name</label>
+            <label className="block text-black font-roboto font-bold w-6/12">
+              Group Name
+            </label>
             <input
               type="text"
               className="mt-2 p-2 border border-gray-300 rounded-lg text-sm w-2/3"
@@ -82,8 +81,10 @@ export default function AddNoteGroupModal({ isOpen, onClose }) {
               <div className="mt-2 text-red-500">{error.groupName}</div>
             )}
           </div>
-          <div className="mb-4 flex items-center">
-            <label className="block text-black font-roboto font-bold w-6/12">Choose Color</label>
+          <div className=" flex items-center">
+            <label className="block text-black font-roboto font-bold w-6/12">
+              Choose Color
+            </label>
             <div className="flex items-center space-x-2 w-2/3">
               {[
                 "bg-violet-400",
