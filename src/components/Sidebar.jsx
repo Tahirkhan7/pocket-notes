@@ -14,8 +14,7 @@ export default function Sidebar({ setSelectedNoteGroup }) {
       <h1 className="text-4xl text-center font-bold font-roboto mb-4 sticky top-0  p-4 z-10">
         Pocket Notes
       </h1>
-      <div className="flex-grow overflow-y-auto pr-16">
-        {/* Adjust padding to make space for the sticky button */}
+      <div className="flex-grow overflow-y-auto">
         <NotesGroup setSelectedNoteGroup={setSelectedNoteGroup} />
       </div>
       <button

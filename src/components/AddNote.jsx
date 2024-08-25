@@ -51,7 +51,7 @@ export default function AddNote({ noteGroup }) {
         className={`w-full p-2 md:p-4 border rounded-lg focus:outline-none bg-white text-gray-900 placeholder-neutral-400 font-roboto resize-none ${
           error ? "border-red-500" : "border-blue-700"
         }`}
-        rows={4} // Increased size
+        rows={4}
         value={noteContent}
         onChange={handleChange}
       ></textarea>
