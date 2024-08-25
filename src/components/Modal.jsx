@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 
 export default function Modal({ isOpen, onClose }) {
@@ -6,6 +6,21 @@ export default function Modal({ isOpen, onClose }) {
   const [noteGroupName, setNoteGroupName] = useState("");
   const { notesGroup, setNotesGroup } = useContext(AppContext);
   const [error, setError] = useState({ groupName: "", color: "" });
+
+  const modalRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        onClose();
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [onClose]);
 
   if (!isOpen) return null;
 
@@ -16,7 +31,6 @@ export default function Modal({ isOpen, onClose }) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    // Initialize error object
     let errors = { groupName: "", color: "" };
 
     if (!noteGroupName.trim()) {
@@ -46,15 +60,12 @@ export default function Modal({ isOpen, onClose }) {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-auto">
-        <button
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-800"
-          onClick={onClose}
-        >
-          &times;
-        </button>
+      <div
+        ref={modalRef}
+        className="relative bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-auto"
+      >
         <h2 className="text-xl font-bold mb-4">Create New Group</h2>
-        <form onSubmit={handleSubmit}>
+        <form className="flex flex-col" onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-700">Group Name</label>
             <input
@@ -68,8 +79,8 @@ export default function Modal({ isOpen, onClose }) {
               <div className="mt-2 text-red-500">{error.groupName}</div>
             )}
           </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 mb-2">Choose Color</label>
+          <div className="mb-4 flex items-center">
+            <label className="block text-gray-700 mr-4">Choose Color</label>
             <div className="flex items-center space-x-2">
               {[
                 "bg-violet-400",
@@ -92,12 +103,14 @@ export default function Modal({ isOpen, onClose }) {
               <div className="mt-2 text-red-500">{error.color}</div>
             )}
           </div>
-          <button
-            type="submit"
-            className="bg-blue-600 text-white p-2 rounded-lg w-full"
-          >
-            Create
-          </button>
+          <div className="flex justify-end mt-4">
+            <button
+              type="submit"
+              className="bg-blue-900 text-white pl-4 pr-4 pt-1 pb-1 rounded-lg"
+            >
+              Create
+            </button>
+          </div>
         </form>
       </div>
     </div>
