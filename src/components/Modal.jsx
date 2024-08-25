@@ -13,6 +13,7 @@ export default function Modal({ isOpen, onClose }) {
   function handleSubmit(e) {
     e.preventDefault();
     const newNoteGroup = {
+      id: Date.now(),
       noteGroupName: e.target.noteGroupName.value,
       noteGroupColor: selectedColor,
     };
