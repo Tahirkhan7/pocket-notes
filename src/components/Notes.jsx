@@ -51,7 +51,10 @@ export default function Notes({ noteGroup, setSelectedNoteGroup }) {
       </div>
 
       <div className="bg-blue-900 p-4 md:p-4">
-        <AddNote noteGroup={noteGroup} setSelectedNoteGroup={setSelectedNoteGroup} />
+        <AddNote
+          noteGroup={noteGroup}
+          setSelectedNoteGroup={setSelectedNoteGroup}
+        />
       </div>
     </div>
   );

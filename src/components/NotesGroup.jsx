@@ -4,7 +4,7 @@ import { AppContext } from "../context/AppContext";
 export default function NotesGroup({ setSelectedNoteGroup }) {
   const [noteGroupId, setNoteGroupId] = useState();
   const { notesGroup } = useContext(AppContext);
-  function handleSelectedNoteGroup(noteGroup){
+  function handleSelectedNoteGroup(noteGroup) {
     setSelectedNoteGroup(noteGroup);
     setNoteGroupId(noteGroup.id);
   }
@@ -16,9 +16,7 @@ export default function NotesGroup({ setSelectedNoteGroup }) {
           key={index}
           onClick={() => handleSelectedNoteGroup(noteGroup)}
           className={`flex items-center p-2 rounded-lg cursor-pointer ${
-            noteGroupId === noteGroup.id
-              ? "bg-gray-300 "
-              : ""
+            noteGroupId === noteGroup.id ? "bg-gray-300 " : ""
           } hover:bg-gray-300`}
         >
           <div
