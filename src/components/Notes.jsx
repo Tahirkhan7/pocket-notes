@@ -1,10 +1,7 @@
-import { useContext } from "react";
-
-import { AppContext } from "../context/AppContext";
 import AddNote from "./AddNote";
+import formatDateAndTime from "../utils/formatDateAndTime";
 
 export default function Notes({ noteGroup }) {
-  const { notesGroup } = useContext(AppContext);
   const selectedGroupName = "My Notes";
 
   return (
@@ -33,7 +30,8 @@ export default function Notes({ noteGroup }) {
             >
               <p className="text-gray-800 mb-4">{note.note}</p>
               <div className="text-right text-sm text-gray-500">
-                <span>asd</span> • <span>10:10 AM</span>
+                <span>{formatDateAndTime(note.id).date}</span> •{" "}
+                <span>{formatDateAndTime(note.id).time}</span>
               </div>
             </div>
           ))

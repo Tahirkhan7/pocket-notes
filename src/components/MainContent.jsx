@@ -3,7 +3,7 @@ import EncryptedMessage from './EncryptedMessage';
 
 export default function MainContent() {
   return (
-    <div className="hidden md:flex flex-1 bg-blue-100 p-8">
+    <div className="hidden md:flex flex-1 bg-blue-100 p-8 items-center justify-center">
       <div className="text-center">
         <img
           src={mainImg}

@@ -5,7 +5,7 @@ export default function NotesGroup({ setSelectedNoteGroup }) {
   const { notesGroup } = useContext(AppContext);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 overflow-y-auto flex-grow">
       {notesGroup.map((noteGroup, index) => (
         <div
           key={index}
