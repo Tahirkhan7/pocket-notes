@@ -61,7 +61,7 @@ export default function AddNote({ noteGroup }) {
         className="absolute bottom-10 right-10 text-neutral-400 w-8 h-8"
       >
         <IoMdSend
-          className={`w-8 h-8 ${!noteContent.trim() ? "opacity-50" : ""}`}
+          className={`w-8 h-8 text-blue-900 ${!noteContent.trim() ? "opacity-50" : ""}`}
         />
       </button>
       {error && <p className="text-red-500 mt-2">{error}</p>}

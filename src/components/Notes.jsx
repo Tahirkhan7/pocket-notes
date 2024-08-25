@@ -1,14 +1,22 @@
+import { GrLinkPrevious } from "react-icons/gr";
 import AddNote from "./AddNote";
 import formatDateAndTime from "../utils/formatDateAndTime";
 
-export default function Notes({ noteGroup }) {
+export default function Notes({ noteGroup, setSelectedNoteGroup }) {
   const selectedGroupName = "My Notes";
+
+  const handleBackClick = () => {
+    setSelectedNoteGroup(null);
+  };
 
   return (
     <div className="flex flex-col flex-1 bg-slate-200 h-full">
       <div className="bg-blue-900 text-white p-2 md:p-4 flex items-center">
+        <div className="md:hidden mr-4" onClick={handleBackClick}>
+          <GrLinkPrevious size={24} />
+        </div>
         <div
-          className={`flex items-center justify-center ${noteGroup.noteGroupColor}  w-10 h-10 rounded-full mr-4`}
+          className={`flex items-center justify-center ${noteGroup.noteGroupColor} w-10 h-10 rounded-full mr-4`}
         >
           <span className="text-lg font-bold font-roboto">
             {selectedGroupName

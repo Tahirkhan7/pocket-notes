@@ -1,6 +1,6 @@
 import { useState } from "react";
 import NotesGroup from "./NotesGroup";
-import Modal from "./Modal";
+import AddNoteGroupModal from "./AddNoteGroupModal";
 
 export default function Sidebar({ setSelectedNoteGroup }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,7 +23,7 @@ export default function Sidebar({ setSelectedNoteGroup }) {
       >
         +
       </button>
-      <Modal isOpen={isModalOpen} onClose={toggleModal} />
+      <AddNoteGroupModal isOpen={isModalOpen} onClose={toggleModal} />
     </div>
   );
 }

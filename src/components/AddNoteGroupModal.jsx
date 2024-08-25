@@ -1,7 +1,7 @@
 import { useContext, useState, useRef, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 
-export default function Modal({ isOpen, onClose }) {
+export default function AddNoteGroupModal({ isOpen, onClose }) {
   const [selectedColor, setSelectedColor] = useState("");
   const [noteGroupName, setNoteGroupName] = useState("");
   const { notesGroup, setNotesGroup } = useContext(AppContext);
@@ -62,15 +62,18 @@ export default function Modal({ isOpen, onClose }) {
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div
         ref={modalRef}
-        className="relative bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-auto"
+        className="relative bg-white p-6 rounded-lg shadow-lg w-11/12 sm:w-3/4 md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto"
       >
         <h2 className="text-xl font-bold mb-4">Create New Group</h2>
-        <form className="flex flex-col" onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-gray-700">Group Name</label>
+        <form
+          className="flex flex-col p-4 sm:p-6 md:p-8"
+          onSubmit={handleSubmit}
+        >
+          <div className="mb-4 flex items-center">
+            <label className="block text-black font-roboto font-bold w-6/12">Group Name</label>
             <input
               type="text"
-              className="mt-2 p-2 w-full border border-gray-300 rounded-lg"
+              className="mt-2 p-2 border border-gray-300 rounded-lg text-sm w-2/3"
               placeholder="Enter group name"
               name="noteGroupName"
               onChange={(e) => setNoteGroupName(e.target.value)}
@@ -80,8 +83,8 @@ export default function Modal({ isOpen, onClose }) {
             )}
           </div>
           <div className="mb-4 flex items-center">
-            <label className="block text-gray-700 mr-4">Choose Color</label>
-            <div className="flex items-center space-x-2">
+            <label className="block text-black font-roboto font-bold w-6/12">Choose Color</label>
+            <div className="flex items-center space-x-2 w-2/3">
               {[
                 "bg-violet-400",
                 "bg-fuchsia-400",
@@ -92,21 +95,21 @@ export default function Modal({ isOpen, onClose }) {
               ].map((colorClass) => (
                 <div
                   key={colorClass}
-                  className={`h-8 w-8 ${colorClass} rounded-full cursor-pointer ${
+                  className={`h-6 w-6 ${colorClass} rounded-full cursor-pointer ${
                     selectedColor === colorClass ? "border-2 border-black" : ""
                   }`}
                   onClick={() => handleColorSelect(colorClass)}
                 ></div>
               ))}
             </div>
-            {error.color && (
-              <div className="mt-2 text-red-500">{error.color}</div>
-            )}
           </div>
+          {error.color && (
+            <div className="mt-2 text-red-500">{error.color}</div>
+          )}
           <div className="flex justify-end mt-4">
             <button
               type="submit"
-              className="bg-blue-900 text-white pl-4 pr-4 pt-1 pb-1 rounded-lg"
+              className="bg-blue-900 text-white pl-4 pr-4 pt-1 pb-1 rounded-lg text-sm"
             >
               Create
             </button>
