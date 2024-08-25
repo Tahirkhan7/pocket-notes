@@ -3,18 +3,41 @@ import { AppContext } from "../context/AppContext";
 
 export default function Modal({ isOpen, onClose }) {
   const [selectedColor, setSelectedColor] = useState("");
+  const [noteGroupName, setNoteGroupName] = useState("");
   const { notesGroup, setNotesGroup } = useContext(AppContext);
+  const [error, setError] = useState({ groupName: "", color: "" });
+
   if (!isOpen) return null;
 
-  function handleColorClick(color) {
+  function handleColorSelect(color) {
     setSelectedColor(color);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    // Initialize error object
+    let errors = { groupName: "", color: "" };
+
+    if (!noteGroupName.trim()) {
+      errors.groupName = "Group name is required.";
+    }
+
+    if (!selectedColor) {
+      errors.color = "Color must be selected.";
+    }
+
+    if (errors.groupName || errors.color) {
+      setError(errors);
+      return;
+    }
+
+    // Clear error message
+    setError({ groupName: "", color: "" });
+
     const newNoteGroup = {
       id: Date.now(),
-      noteGroupName: e.target.noteGroupName.value,
+      noteGroupName,
       noteGroupColor: selectedColor,
     };
     setNotesGroup([...notesGroup, newNoteGroup]);
@@ -39,7 +62,11 @@ export default function Modal({ isOpen, onClose }) {
               className="mt-2 p-2 w-full border border-gray-300 rounded-lg"
               placeholder="Enter group name"
               name="noteGroupName"
+              onChange={(e) => setNoteGroupName(e.target.value)}
             />
+            {error.groupName && (
+              <div className="mt-2 text-red-500">{error.groupName}</div>
+            )}
           </div>
           <div className="mb-4">
             <label className="block text-gray-700 mb-2">Choose Color</label>
@@ -57,14 +84,17 @@ export default function Modal({ isOpen, onClose }) {
                   className={`h-8 w-8 ${colorClass} rounded-full cursor-pointer ${
                     selectedColor === colorClass ? "border-2 border-black" : ""
                   }`}
-                  onClick={() => handleColorClick(colorClass)}
+                  onClick={() => handleColorSelect(colorClass)}
                 ></div>
               ))}
             </div>
+            {error.color && (
+              <div className="mt-2 text-red-500">{error.color}</div>
+            )}
           </div>
           <button
             type="submit"
-            className="bg-blue-600 text-white p-2 bottom-4 right-4 rounded-lg w-half"
+            className="bg-blue-600 text-white p-2 rounded-lg w-full"
           >
             Create
           </button>
