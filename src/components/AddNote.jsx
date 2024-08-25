@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { IoMdSend } from "react-icons/io";
 import { AppContext } from "../context/AppContext";
 
-export default function AddNote({ noteGroup }) {
+export default function AddNote({ noteGroup, setSelectedNoteGroup }) {
   const { notesGroup, setNotesGroup } = useContext(AppContext);
   const [noteContent, setNoteContent] = useState("");
   const [error, setError] = useState("");
@@ -24,10 +24,13 @@ export default function AddNote({ noteGroup }) {
 
     const updatedNotesGroup = notesGroup.map((group) => {
       if (group.id === noteGroup.id) {
-        return {
+        const updatedGroup = {
           ...group,
           notes: [...(group.notes || []), newNote],
         };
+        
+        setSelectedNoteGroup(updatedGroup);
+        return updatedGroup;
       }
       return group;
     });
@@ -44,6 +47,13 @@ export default function AddNote({ noteGroup }) {
     }
   }
 
+  function handleKeyDown(e) {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit(e);
+    }
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <textarea
@@ -54,6 +64,7 @@ export default function AddNote({ noteGroup }) {
         rows={4}
         value={noteContent}
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
       ></textarea>
       <button
         type="submit"
