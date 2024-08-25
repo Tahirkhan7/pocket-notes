@@ -11,13 +11,16 @@ export default function Sidebar({ setSelectedNoteGroup }) {
 
   return (
     <div className="w-full md:w-1/4 bg-gray-100 p-4 relative flex flex-col h-screen">
-      <h1 className="text-4xl text-center font-bold mb-4 sticky top-0 bg-gray-100 p-4 z-10">
+      <h1 className="text-4xl text-center font-bold font-roboto mb-4 sticky top-0  p-4 z-10">
         Pocket Notes
       </h1>
-      <NotesGroup setSelectedNoteGroup={setSelectedNoteGroup} />
+      <div className="flex-grow overflow-y-auto pr-16">
+        {/* Adjust padding to make space for the sticky button */}
+        <NotesGroup setSelectedNoteGroup={setSelectedNoteGroup} />
+      </div>
       <button
         onClick={toggleModal}
-        className="bg-blue-900 text-white p-4 rounded-full sticky bottom-4 right-4 self-end z-10"
+        className="bg-blue-900 text-white p-3 rounded-full absolute bottom-4 right-12 z-10 text-4xl font-bold"
       >
         +
       </button>

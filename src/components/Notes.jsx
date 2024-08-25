@@ -6,11 +6,11 @@ export default function Notes({ noteGroup }) {
 
   return (
     <div className="flex flex-col flex-1 bg-slate-200 h-full">
-      <div className="bg-blue-900 text-white p-4 md:p-6 flex items-center">
+      <div className="bg-blue-900 text-white p-2 md:p-4 flex items-center">
         <div
-          className={`flex items-center justify-center ${noteGroup.noteGroupColor} w-10 h-10 rounded-full mr-4`}
+          className={`flex items-center justify-center ${noteGroup.noteGroupColor}  w-10 h-10 rounded-full mr-4`}
         >
-          <span className="text-xl font-bold">
+          <span className="text-lg font-bold font-roboto">
             {selectedGroupName
               .split(" ")
               .map((word) => word[0])
@@ -28,19 +28,19 @@ export default function Notes({ noteGroup }) {
               key={index}
               className="bg-white p-4 md:p-6 rounded-lg shadow-md mb-4"
             >
-              <p className="text-gray-800 mb-4">{note.note}</p>
-              <div className="text-right text-sm text-gray-500">
+              <p className="text-black font-medium font-roboto mb-4">{note.note}</p>
+              <div className="text-right font-medium font-roboto text-sm text-black">
                 <span>{formatDateAndTime(note.id).date}</span> •{" "}
                 <span>{formatDateAndTime(note.id).time}</span>
               </div>
             </div>
           ))
         ) : (
-          <p className="text-gray-500">No notes available.</p>
+          <p className="text-black font-medium font-roboto">No notes available.</p>
         )}
       </div>
 
-      <div className="p-4 md:p-6">
+      <div className="bg-blue-900 p-4 md:p-4">
         <AddNote noteGroup={noteGroup} />
       </div>
     </div>

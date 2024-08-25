@@ -13,7 +13,7 @@ export default function NotesGroup({ setSelectedNoteGroup }) {
           onClick={() => setSelectedNoteGroup(noteGroup)}
         >
           <div
-            className={`${noteGroup.noteGroupColor} text-white w-10 h-10 rounded-full flex items-center justify-center font-bold`}
+            className={`${noteGroup.noteGroupColor} text-white w-10 h-10 rounded-full flex items-center justify-center font-bold font-roboto`}
           >
             {noteGroup.noteGroupName
               .split(" ")
@@ -22,7 +22,7 @@ export default function NotesGroup({ setSelectedNoteGroup }) {
               .join("")
               .toUpperCase()}
           </div>
-          <span className="ml-4 text-gray-700 font-medium">
+          <span className="ml-4 text-black font-bold font-roboto">
             {noteGroup.noteGroupName}
           </span>
         </div>

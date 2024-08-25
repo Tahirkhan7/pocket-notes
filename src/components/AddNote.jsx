@@ -39,7 +39,6 @@ export default function AddNote({ noteGroup }) {
   function handleChange(e) {
     setNoteContent(e.target.value);
 
-    // Clear error when the user starts typing
     if (error) {
       setError("");
     }
@@ -47,24 +46,25 @@ export default function AddNote({ noteGroup }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="bg-blue-900 p-4 flex items-end relative">
-        <textarea
-          placeholder="Enter your text here..."
-          className={`flex-1 p-2 md:p-4 border rounded-lg focus:outline-none bg-white text-gray-900 placeholder-gray-500 resize-none ${
-            error ? "border-red-500" : "border-blue-700"
-          }`}
-          rows={3}
-          value={noteContent}
-          onChange={handleChange}
-        ></textarea>
-        <button type="submit" disabled={!noteContent.trim()}>
-          <IoMdSend
-            className={`absolute bottom-4 right-4 text-neutral-400 w-8 h-8 ${
-              !noteContent.trim() ? "opacity-50" : ""
-            }`}
-          />
-        </button>
-      </div>
+      <textarea
+        placeholder="Enter your text here..........."
+        className={`w-full p-2 md:p-4 border rounded-lg focus:outline-none bg-white text-gray-900 placeholder-neutral-400 font-roboto resize-none ${
+          error ? "border-red-500" : "border-blue-700"
+        }`}
+        rows={4} // Increased size
+        value={noteContent}
+        onChange={handleChange}
+      ></textarea>
+      <button
+        type="submit"
+        disabled={!noteContent.trim()}
+        className="absolute bottom-10 right-10 text-neutral-400 w-8 h-8"
+      >
+        <IoMdSend
+          className={`w-8 h-8 ${!noteContent.trim() ? "opacity-50" : ""}`}
+        />
+      </button>
+      {error && <p className="text-red-500 mt-2">{error}</p>}
     </form>
   );
 }

@@ -32,7 +32,6 @@ export default function Modal({ isOpen, onClose }) {
       return;
     }
 
-    // Clear error message
     setError({ groupName: "", color: "" });
 
     const newNoteGroup = {
@@ -41,6 +40,7 @@ export default function Modal({ isOpen, onClose }) {
       noteGroupColor: selectedColor,
     };
     setNotesGroup([...notesGroup, newNoteGroup]);
+    setSelectedColor("");
     onClose();
   }
 
