@@ -1,27 +1,22 @@
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
+
 export default function NotesGroup() {
-  const groups = [
-    { name: "My Notes", color: "bg-blue-600" },
-    { name: "My personal grp", color: "bg-purple-400" },
-    { name: "Javascript grp", color: "bg-pink-500" },
-    { name: "HTML grp", color: "bg-teal-400" },
-    { name: "CSS Notes", color: "bg-orange-400" },
-    { name: "SQL Notes", color: "bg-blue-500" },
-    { name: "Python Notes", color: "bg-pink-400" },
-  ];
+  const { notesGroup } = useContext(AppContext);
 
   return (
     <div className="space-y-4">
-      {groups.map((group, index) => (
+      {notesGroup.map((noteGroup, index) => (
         <div
           key={index}
           className={`flex items-center p-2 rounded-lg cursor-pointer hover:bg-gray-200`}
         >
           <div
-            className={`${group.color} text-white w-10 h-10 rounded-full flex items-center justify-center font-bold`}
+            className={`${noteGroup.noteGroupColor} text-white w-10 h-10 rounded-full flex items-center justify-center font-bold`}
           >
-            {group.name.split(' ').map(word => word[0]).join('')}
+            {noteGroup.noteGroupName.split(' ').slice(0, 2).map(word => word[0]).join('').toUpperCase()}
           </div>
-          <span className="ml-4 text-gray-700 font-medium">{group.name}</span>
+          <span className="ml-4 text-gray-700 font-medium">{noteGroup.noteGroupName}</span>
         </div>
       ))}
     </div>
