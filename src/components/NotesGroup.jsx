@@ -1,26 +1,39 @@
 import { useContext, useState } from "react";
 import { AppContext } from "../context/AppContext";
+import styles from "./NotesGroup.module.css";
 
 export default function NotesGroup({ setSelectedNoteGroup }) {
   const [noteGroupId, setNoteGroupId] = useState();
   const { notesGroup } = useContext(AppContext);
+
   function handleSelectedNoteGroup(noteGroup) {
     setSelectedNoteGroup(noteGroup);
     setNoteGroupId(noteGroup.id);
   }
 
   return (
-    <div className="space-y-4 overflow-y-auto flex-grow">
+    <div className={styles.notesGroupContainer}>
       {notesGroup.map((noteGroup, index) => (
         <div
           key={index}
           onClick={() => handleSelectedNoteGroup(noteGroup)}
-          className={`flex items-center p-2 rounded-lg cursor-pointer ${
-            noteGroupId === noteGroup.id ? "bg-gray-300 " : ""
-          } hover:bg-gray-300`}
+          className={`${styles.noteGroupItem} ${
+            noteGroupId === noteGroup.id ? styles.noteGroupItemSelected : ""
+          }`}
         >
           <div
-            className={`${noteGroup.noteGroupColor} text-white w-10 h-10 rounded-full flex items-center justify-center font-bold font-roboto`}
+            style={{
+              backgroundColor: noteGroup.noteGroupColor,
+              width: "2.5rem" ,
+              height: "2.5rem", 
+              borderRadius: "50%", 
+              display: "flex", 
+              alignItems: "center", 
+              justifyContent: "center", 
+              textAlign: "center", 
+              lineHeight: "100px", 
+              color: 'white'
+            }}
           >
             {noteGroup.noteGroupName
               .split(" ")
@@ -29,7 +42,7 @@ export default function NotesGroup({ setSelectedNoteGroup }) {
               .join("")
               .toUpperCase()}
           </div>
-          <span className="ml-4 text-black font-bold font-roboto">
+          <span className={styles.noteGroupName}>
             {noteGroup.noteGroupName}
           </span>
         </div>

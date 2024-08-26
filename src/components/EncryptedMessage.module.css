@@ -1,0 +1,16 @@
+.encryptedMessageContainer {
+    position: absolute;
+    bottom: 1rem;
+    left: 65%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: #27272a; 
+  }
+  
+  .encryptedMessageText {
+    font-family: 'Roboto', sans-serif;
+  }
+  

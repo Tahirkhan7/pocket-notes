@@ -1,0 +1,61 @@
+
+.form {
+    position: relative;
+  }
+  
+  .textarea {
+    width: 95%;
+    padding: 0.5rem;
+    border: 1px solid; 
+    border-radius: 0.5rem; 
+    background-color: white; 
+    color: #1f2937; 
+    font-family: 'Roboto', sans-serif; 
+    resize: none; 
+    outline: none; 
+  }
+  
+  @media (min-width: 768px) {
+    .textarea {
+      padding: 1rem;
+    }
+  }
+  
+  .textareaPlaceholder {
+    color: #a3a3a3; 
+  }
+  
+  .textareaError {
+    border-color: #ef4444; 
+  }
+  
+  .textareaNormal {
+    border-color: #1e3a8a; 
+  }
+  
+  .submitButton {
+    all: unset; 
+    position: absolute; 
+    bottom: 1rem; 
+    right: 2.5rem; 
+    width: 2rem; 
+    height: 2rem; 
+    cursor: pointer; 
+  }
+  
+  .icon {
+    width: 2rem; 
+    height: 2rem; 
+    color: #1e3a8a; 
+  }
+  
+  .iconDisabled {
+    opacity: 0.5; 
+  }
+  
+  
+  .errorMessage {
+    color: #ef4444; 
+    margin-top: 0.5rem; 
+  }
+  

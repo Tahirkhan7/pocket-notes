@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import MainContent from "./components/MainContent";
 import Notes from "./components/Notes";
 import Sidebar from "./components/Sidebar";
+import styles from "./assets/App.module.css";
 
 function App() {
   const [selectedNoteGroup, setSelectedNoteGroup] = useState(null);
@@ -21,7 +22,7 @@ function App() {
   }, []);
 
   return (
-    <div className="h-screen flex">
+    <div className={styles.container}>
       {!isMobileView || !selectedNoteGroup ? (
         <Sidebar setSelectedNoteGroup={setSelectedNoteGroup} />
       ) : null}

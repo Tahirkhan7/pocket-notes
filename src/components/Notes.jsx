@@ -1,6 +1,7 @@
 import { GrLinkPrevious } from "react-icons/gr";
 import AddNote from "./AddNote";
 import formatDateAndTime from "../utils/formatDateAndTime";
+import styles from "./Notes.module.css";
 
 export default function Notes({ noteGroup, setSelectedNoteGroup }) {
   const handleBackClick = () => {
@@ -8,18 +9,28 @@ export default function Notes({ noteGroup, setSelectedNoteGroup }) {
   };
 
   return (
-    <div className="flex flex-col flex-1 bg-slate-200 h-full">
-      <div className="bg-blue-900 text-white p-2 md:p-4 flex items-center">
-        <div
-          className="md:hidden mr-4 hover: cursor-pointer"
+    <div className={styles.container}>
+      <div className={styles.header}>
+      <div
+          className={styles.backButton}
           onClick={handleBackClick}
         >
           <GrLinkPrevious size={24} />
         </div>
         <div
-          className={`flex items-center justify-center ${noteGroup.noteGroupColor} w-10 h-10 rounded-full mr-4`}
+          style={{
+            backgroundColor: noteGroup.noteGroupColor,
+            width: "2.5rem" ,
+            height: "2.5rem", 
+            borderRadius: "50%", 
+            display: "flex", 
+            alignItems: "center", 
+            justifyContent: "center", 
+            textAlign: "center", 
+            lineHeight: "100px", 
+          }}
         >
-          <span className="text-lg font-bold font-roboto">
+          <span className={styles.iconText}>
             {noteGroup.noteGroupName
               .split(" ")
               .slice(0, 2)
@@ -28,21 +39,16 @@ export default function Notes({ noteGroup, setSelectedNoteGroup }) {
               .toUpperCase()}
           </span>
         </div>
-        <h1 className="text-xl font-bold">{noteGroup.noteGroupName}</h1>
+        <h1 className={styles.groupName}>{noteGroup.noteGroupName}</h1>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4 md:p-6">
+      <div className={styles.notesContainer}>
         {noteGroup.notes &&
           noteGroup.notes.length > 0 &&
           noteGroup.notes.map((note, index) => (
-            <div
-              key={index}
-              className="bg-white p-4 md:p-6 shadow-md mb-4"
-            >
-              <p className="text-black font-medium font-roboto mb-4">
-                {note.note}
-              </p>
-              <div className="text-right font-medium font-roboto text-sm text-black">
+            <div key={index} className={styles.noteCard}>
+              <p className={styles.noteText}>{note.note}</p>
+              <div className={styles.noteTimestamp}>
                 <span>{formatDateAndTime(note.id).date}</span> •{" "}
                 <span>{formatDateAndTime(note.id).time}</span>
               </div>
@@ -50,7 +56,7 @@ export default function Notes({ noteGroup, setSelectedNoteGroup }) {
           ))}
       </div>
 
-      <div className="bg-blue-900 p-4 md:p-4">
+      <div className={styles.footer}>
         <AddNote
           noteGroup={noteGroup}
           setSelectedNoteGroup={setSelectedNoteGroup}

@@ -1,10 +1,11 @@
 import { FaLock } from "react-icons/fa";
+import styles from "./EncryptedMessage.module.css";
 
 export default function EncryptedMessage() {
   return (
-    <div className="absolute bottom-4 left-1/2 transform translate-x-1/2 flex items-center justify-center space-x-2 text-zinc-800">
+    <div className={styles.encryptedMessageContainer}>
       <FaLock />
-      <span className="font-roboto">end-to-end encrypted</span>
+      <span className={styles.encryptedMessageText}>end-to-end encrypted</span>
     </div>
   );
 }

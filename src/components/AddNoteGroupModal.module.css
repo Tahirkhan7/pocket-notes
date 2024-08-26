@@ -1,0 +1,157 @@
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modalContainer {
+  position: relative;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+  width: 91.666667%;
+  max-width: 20rem;
+  margin: auto;
+}
+
+@media (min-width: 640px) {
+  .modalContainer {
+    width: 75%;
+  }
+}
+
+@media (min-width: 768px) {
+  .modalContainer {
+    max-width: 28rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .modalContainer {
+    max-width: 36rem;
+  }
+}
+
+.modalTitle {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+
+
+@media (min-width: 640px) {
+  .form {
+    padding: 1.5rem;
+  }
+}
+
+.formGroup {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    width: auto;
+  }
+  
+  .colorOptions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: auto;
+  }
+
+  .colorOptionSelected {
+    border: 2px solid black; 
+  }
+  
+  .label {
+    display: block;
+    color: black;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    width: 50%;
+    margin-bottom: 0.5rem; 
+  }
+  
+  .input {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    width: 100%; 
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+
+.errorMessage {
+  margin-top: 0.5rem;
+  color: #ef4444;
+}
+
+.colorOptions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 66.666667%;
+}
+
+.colorOption {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+
+.colorSelected {
+  border: 2px solid black;
+}
+
+.bg-violet-400 {
+  background-color: #7c3aed;
+}
+
+.bg-fuchsia-400 {
+  background-color: #d946ef;
+}
+
+.bg-cyan-300 {
+  background-color: #22d3ee;
+}
+
+.bg-red-400 {
+  background-color: #f87171;
+}
+
+.bg-blue-700 {
+  background-color: #1d4ed8;
+}
+
+.bg-blue-400 {
+  background-color: #60a5fa;
+}
+
+.submitButton {
+  background-color: #1e3a8a;
+  color: white;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.submitButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}

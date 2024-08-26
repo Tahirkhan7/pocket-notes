@@ -1,5 +1,6 @@
 import { useContext, useState, useRef, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
+import styles from "./AddNoteGroupModal.module.css";
 
 export default function AddNoteGroupModal({ isOpen, onClose }) {
   const [selectedColor, setSelectedColor] = useState("");
@@ -25,7 +26,7 @@ export default function AddNoteGroupModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   function handleColorSelect(color) {
-    setSelectedColor(color);
+    return () => setSelectedColor(color);
   }
 
   function handleSubmit(e) {
@@ -55,63 +56,68 @@ export default function AddNoteGroupModal({ isOpen, onClose }) {
     };
     setNotesGroup([...notesGroup, newNoteGroup]);
     setSelectedColor("");
+    setNoteGroupName("");
     onClose();
   }
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div
-        ref={modalRef}
-        className="relative bg-white p-4 rounded-lg shadow-lg w-11/12 sm:w-3/4 md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto"
-      >
-        <h2 className="text-xl font-bold">Create New Group</h2>
-        <form className="flex flex-col p-2 sm:p-6" onSubmit={handleSubmit}>
-          <div className="mb-4 flex items-center">
-            <label className="block text-black font-roboto font-bold w-6/12">
-              Group Name
-            </label>
+    <div className={styles.modalOverlay}>
+      <div ref={modalRef} className={styles.modalContainer}>
+        <h2 className={styles.modalTitle}>Create New Group</h2>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <div className={styles.formGroup}>
+            <label className={styles.label}>Group Name</label>
             <input
               type="text"
-              className="mt-2 p-2 border border-gray-300 rounded-lg text-sm w-2/3"
+              className={styles.input}
               placeholder="Enter group name"
               name="noteGroupName"
+              value={noteGroupName}
               onChange={(e) => setNoteGroupName(e.target.value)}
             />
           </div>
-            {error.groupName && (
-              <div className="mt-2 text-red-500">{error.groupName}</div>
-            )}
-          <div className=" flex items-center">
-            <label className="block text-black font-roboto font-bold w-6/12">
-              Choose Color
-            </label>
-            <div className="flex items-center space-x-2 w-2/3">
-              {[
-                "bg-violet-400",
-                "bg-fuchsia-400",
-                "bg-cyan-300",
-                "bg-red-400",
-                "bg-blue-700",
-                "bg-blue-400",
-              ].map((colorClass) => (
-                <div
-                  key={colorClass}
-                  className={`h-6 w-6 ${colorClass} rounded-full cursor-pointer ${
-                    selectedColor === colorClass ? "border-2 border-black" : ""
-                  }`}
-                  onClick={() => handleColorSelect(colorClass)}
-                ></div>
-              ))}
-            </div>
-          </div>
-          {error.color && (
-            <div className="mt-2 text-red-500">{error.color}</div>
+          {error.groupName && (
+            <div className={styles.errorMessage}>{error.groupName}</div>
           )}
-          <div className="flex justify-end mt-4">
-            <button
-              type="submit"
-              className="bg-blue-900 text-white pl-4 pr-4 pt-1 pb-1 rounded-lg text-sm"
-            >
+          <div className={styles.colorOptions}>
+            <label className={styles.label}>Choose colour</label>
+            <div
+              className={`${styles.colorOption} ${selectedColor === '#7c3aed' ? styles.colorOptionSelected : ''}`}
+              style={{ backgroundColor: '#7c3aed' }}
+              onClick={handleColorSelect("#7c3aed")}
+            ></div>
+            <div
+              className={`${styles.colorOption} ${selectedColor === '#d946ef' ? styles.colorOptionSelected : ''}`}
+              style={{ backgroundColor: '#d946ef' }}
+              onClick={handleColorSelect("#d946ef")}
+            ></div>
+            <div
+              className={`${styles.colorOption} ${selectedColor === '#22d3ee' ? styles.colorOptionSelected : ''}`}
+              style={{ backgroundColor: '#22d3ee' }}
+              onClick={handleColorSelect("#22d3ee")}
+            ></div>
+            <div
+              className={`${styles.colorOption} ${selectedColor === '#f87171' ? styles.colorOptionSelected : ''}`}
+              style={{ backgroundColor: '#f87171' }}
+              onClick={handleColorSelect("#f87171")}
+            ></div>
+            <div
+              className={`${styles.colorOption} ${selectedColor === '#1d4ed8' ? styles.colorOptionSelected : ''}`}
+              style={{ backgroundColor: '#1d4ed8' }}
+              onClick={handleColorSelect("#1d4ed8")}
+            ></div>
+            <div
+              className={`${styles.colorOption} ${selectedColor === '#60a5fa' ? styles.colorOptionSelected : ''}`}
+              style={{ backgroundColor: '#60a5fa' }}
+              onClick={handleColorSelect("#60a5fa")}
+            ></div>
+          </div>
+
+          {error.color && (
+            <div className={styles.errorMessage}>{error.color}</div>
+          )}
+          <div className={styles.submitButtonContainer}>
+            <button type="submit" className={styles.submitButton}>
               Create
             </button>
           </div>

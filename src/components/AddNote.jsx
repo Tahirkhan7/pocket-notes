@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { IoMdSend } from "react-icons/io";
 import { AppContext } from "../context/AppContext";
+import styles from "./AddNote.module.css";
 
 export default function AddNote({ noteGroup, setSelectedNoteGroup }) {
   const { notesGroup, setNotesGroup } = useContext(AppContext);
@@ -55,11 +56,11 @@ export default function AddNote({ noteGroup, setSelectedNoteGroup }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.form}>
       <textarea
         placeholder="Enter your text here..........."
-        className={`w-full p-2 md:p-4 border rounded-lg focus:outline-none bg-white text-gray-900 placeholder-neutral-400 font-roboto resize-none ${
-          error ? "border-red-500" : "border-blue-700"
+        className={`${styles.textarea} ${styles.textareaPlaceholder} ${
+          error ? styles.textareaError : styles.textareaNormal
         }`}
         rows={4}
         value={noteContent}
@@ -69,15 +70,15 @@ export default function AddNote({ noteGroup, setSelectedNoteGroup }) {
       <button
         type="submit"
         disabled={!noteContent.trim()}
-        className="absolute bottom-10 right-10 text-neutral-400 w-8 h-8"
+        className={styles.submitButton}
       >
         <IoMdSend
-          className={`w-8 h-8 text-blue-900 ${
-            !noteContent.trim() ? "opacity-50" : ""
+          className={`${styles.icon} ${
+            !noteContent.trim() ? styles.iconDisabled : ""
           }`}
         />
       </button>
-      {error && <p className="text-red-500 mt-2">{error}</p>}
+      {error && <p className={styles.errorMessage}>{error}</p>}
     </form>
   );
 }
