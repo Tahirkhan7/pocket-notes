@@ -77,10 +77,10 @@ export default function AddNoteGroupModal({ isOpen, onClose }) {
               name="noteGroupName"
               onChange={(e) => setNoteGroupName(e.target.value)}
             />
+          </div>
             {error.groupName && (
               <div className="mt-2 text-red-500">{error.groupName}</div>
             )}
-          </div>
           <div className=" flex items-center">
             <label className="block text-black font-roboto font-bold w-6/12">
               Choose Color

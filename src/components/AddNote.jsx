@@ -11,7 +11,7 @@ export default function AddNote({ noteGroup, setSelectedNoteGroup }) {
     e.preventDefault();
 
     if (!noteContent.trim()) {
-      setError("Note content is required.");
+      setError("Note is required!");
       return;
     }
 

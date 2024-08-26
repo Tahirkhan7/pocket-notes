@@ -37,7 +37,7 @@ export default function Notes({ noteGroup, setSelectedNoteGroup }) {
           noteGroup.notes.map((note, index) => (
             <div
               key={index}
-              className="bg-white p-4 md:p-6 rounded-lg shadow-md mb-4"
+              className="bg-white p-4 md:p-6 shadow-md mb-4"
             >
               <p className="text-black font-medium font-roboto mb-4">
                 {note.note}

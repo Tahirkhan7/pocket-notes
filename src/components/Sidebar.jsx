@@ -19,7 +19,7 @@ export default function Sidebar({ setSelectedNoteGroup }) {
       </div>
       <button
         onClick={toggleModal}
-        className="bg-blue-900 text-white p-3 rounded-full absolute bottom-4 right-12 z-10 text-custom leading-custom font-bold"
+        className="bg-blue-900 text-white p-3 rounded-full absolute bottom-10 sm:bottom-20 right-12 z-10 text-custom leading-custom font-bold"
       >
         +
       </button>
